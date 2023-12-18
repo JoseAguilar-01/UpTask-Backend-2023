@@ -1,18 +1,11 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.EMAIL_SERVICE_API_KEY);
 
 export const registerEmail = (data) => {
 	const { email, name, token } = data;
 
-	const transport = nodemailer.createTransport({
-		host: process.env.MAILTRAP_HOST,
-		port: process.env.MAILTRAP_PORT,
-		auth: {
-			user: process.env.MAILTRAP_USER,
-			pass: process.env.MAILTRAP_PASS,
-		},
-	});
-
-	transport.sendMail({
+	resend.emails.send({
 		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
 		to: email,
 		subject: 'Uptask - Confirma tu cuenta',
@@ -32,16 +25,7 @@ export const registerEmail = (data) => {
 export const forgotPasswordEmail = (data) => {
 	const { email, name, token } = data;
 
-	const transport = nodemailer.createTransport({
-		host: process.env.MAILTRAP_HOST,
-		port: process.env.MAILTRAP_PORT,
-		auth: {
-			user: process.env.MAILTRAP_USER,
-			pass: process.env.MAILTRAP_PASS,
-		},
-	});
-
-	transport.sendMail({
+	resend.emails.send({
 		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
 		to: email,
 		subject: 'Uptask - Reestablece tu contraseña',
