@@ -1,4 +1,6 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.EMAIL_SERVICE_API_KEY);
 
 export const registerEmail = (data) => {
 	const { email, name, token } = data;
