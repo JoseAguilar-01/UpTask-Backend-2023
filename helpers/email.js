@@ -6,7 +6,7 @@ export const registerEmail = (data) => {
 	const { email, name, token } = data;
 
 	resend.emails.send({
-		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
+		from: '"UpTask - Administrador de Proyectos" <onboarding@resend.dev>',
 		to: email,
 		subject: 'Uptask - Confirma tu cuenta',
 		html: `
@@ -26,7 +26,7 @@ export const forgotPasswordEmail = (data) => {
 	const { email, name, token } = data;
 
 	resend.emails.send({
-		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
+		from: '"UpTask - Administrador de Proyectos" <onboarding@resend.dev>',
 		to: email,
 		subject: 'Uptask - Reestablece tu contraseña',
 		html: `
