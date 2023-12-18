@@ -4,11 +4,11 @@ export const registerEmail = (data) => {
 	const { email, name, token } = data;
 
 	const transport = nodemailer.createTransport({
-		host: process.env.MAILTRAP_HOST,
-		port: process.env.MAILTRAP_PORT,
+		host: process.env.EMAIL_SERVICE_HOST,
+		port: process.env.EMAIL_SERVICE_PORT,
 		auth: {
-			user: process.env.MAILTRAP_USER,
-			pass: process.env.MAILTRAP_PASS,
+			user: process.env.EMAIL_SERVICE_USER,
+			pass: process.env.EMAIL_SERVICE_PASS,
 		},
 	});
 
@@ -33,11 +33,11 @@ export const forgotPasswordEmail = (data) => {
 	const { email, name, token } = data;
 
 	const transport = nodemailer.createTransport({
-		host: process.env.MAILTRAP_HOST,
-		port: process.env.MAILTRAP_PORT,
+		host: process.env.EMAIL_SERVICE_HOST,
+		port: process.env.EMAIL_SERVICE_PORT,
 		auth: {
-			user: process.env.MAILTRAP_USER,
-			pass: process.env.MAILTRAP_PASS,
+			user: process.env.EMAIL_SERVICE_USER,
+			pass: process.env.EMAIL_SERVICE_PASS,
 		},
 	});
 
