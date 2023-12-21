@@ -1,18 +1,18 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.EMAIL_SERVICE_API_KEY);
+const config = {
+	port: process.env.EMAIL_SERVICE_PORT,
+	host: process.env.EMAIL_SERVICE_HOST,
+	auth: {
+		user: process.env.EMAIL_SERVICE_USER,
+		pass: process.env.EMAIL_SERVICE_PASS,
+	},
+};
 
 export const registerEmail = (data) => {
 	const { email, name, token } = data;
 
-	const transport = nodemailer.createTransport({
-		host: process.env.EMAIL_SERVICE_HOST,
-		port: process.env.EMAIL_SERVICE_PORT,
-		auth: {
-			user: process.env.EMAIL_SERVICE_USER,
-			pass: process.env.EMAIL_SERVICE_PASS,
-		},
-	});
+	const transport = nodemailer.createTransport(config);
 
 	transport.sendMail({
 		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
@@ -34,14 +34,7 @@ export const registerEmail = (data) => {
 export const forgotPasswordEmail = (data) => {
 	const { email, name, token } = data;
 
-	const transport = nodemailer.createTransport({
-		host: process.env.EMAIL_SERVICE_HOST,
-		port: process.env.EMAIL_SERVICE_PORT,
-		auth: {
-			user: process.env.EMAIL_SERVICE_USER,
-			pass: process.env.EMAIL_SERVICE_PASS,
-		},
-	});
+	const transport = nodemailer.createTransport(config);
 
 	transport.sendMail({
 		from: '"UpTask - Administrador de Proyectos" <cuentas@uptask.com>',
