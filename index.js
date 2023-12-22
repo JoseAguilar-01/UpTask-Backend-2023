@@ -15,19 +15,19 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 
 // Configure CORS
-// const whitelist = [process.env.FRONTEND_URL];
+const whitelist = [process.env.FRONTEND_URL];
 
-// const corsOptions = {
-// 	origin: function (origin, callback) {
-// 		if (whitelist.includes(origin)) {
-// 			callback(null, true);
-// 		} else {
-// 			callback(new Error('Not allowed by CORS'));
-// 		}
-// 	},
-// };
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (whitelist.includes(origin)) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Connect to DB
 connectDB();
