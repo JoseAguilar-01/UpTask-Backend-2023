@@ -5,7 +5,6 @@ import { forgotPasswordEmail, registerEmail } from '../helpers/email.js';
 
 const createUser = async (req, res) => {
 	const { email } = req.body;
-
 	if (!email) {
 		return res.status(400).json({ message: 'El email es obligatorio' });
 	}
@@ -115,12 +114,14 @@ const forgotPassword = async (req, res) => {
 		return res.status(404).json({ message: error.message });
 	}
 
+	console.log(currentUser)
+
 	try {
 		currentUser.token = generateId();
 		await currentUser.save();
 
 		const { name, token } = currentUser;
-
+		
 		forgotPasswordEmail({ email, name, token });
 
 		return res.json({
