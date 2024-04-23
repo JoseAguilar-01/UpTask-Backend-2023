@@ -1,16 +1,12 @@
 import { Server } from 'socket.io';
 
 export const connectSocket = (server, whitelist) => {
-	console.log(whitelist)
-	
 	const io = new Server(server, {
 		pingTimeout: 60000,
 		cors: {
 			origin: whitelist,
 		},
 	});
-
-	console.log('io: ', io)
 
 	io.on('connection', (socket) => {
 		console.log('Connected to socket.io');
