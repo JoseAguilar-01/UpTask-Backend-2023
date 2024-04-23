@@ -22,8 +22,8 @@ export const registerEmail = (data) => {
 			<p>Hola: ${name}. Aquí está tu código de verficación.</p>
 
 			<p>
-			Utiliza el siguiente código para confirmar tu cuenta: <span style="color: rgb(2, 132, 199);">
-			</span> ${token}
+			Utiliza el siguiente código para confirmar tu cuenta: 
+			<span style="color: rgb(2, 132, 199);"> ${token} </span> 
 			</p>
 
 			<p>Si tú no solicitaste este código, puedes ignorar este mensaje.</p>
@@ -42,14 +42,16 @@ export const forgotPasswordEmail = (data) => {
 		to: email,
 		subject: 'Uptask - Reestablece tu contraseña',
 		html: `
-        <p>Hola: ${name}, has solicitado reestablecer tu contraseña.</p>
+		<div style="font-size: 24px;">
+			<p>Hola: ${name}, has solicitado un código de verificación para reestablecer tu contraseña.</p>
 
-        <p>
-        Ya casi terminas, solo falta que sigas el siguiente link:
-        <a href='${process.env.FRONTEND_URL}/forgot-password/${token}'>Reestablecer contraseña</a>
-        </p>
+			<p>
+			Utiliza este código para validar que realmente eres tú y, posteriormente, establecer una nueva contraseña:
+			<span style="color: rgb(2, 132, 199);"> ${token} </span> 
+			</p>
 
-		<p>Si tú no solicitaste esta acción, puedes ignorar este mensaje.</p>
+			<p>Si tú no solicitaste esta acción, puedes ignorar este mensaje.</p>
+		</div>
         `,
 	});
 };
