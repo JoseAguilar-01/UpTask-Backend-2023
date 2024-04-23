@@ -19,6 +19,8 @@ const whitelist = [process.env.FRONTEND_URL];
 
 const corsOptions = {
 	origin: function (origin, callback) {
+		console.log(origin, ' ', whitelist)
+		
 		if (whitelist.includes(origin)) {
 			callback(null, true);
 		} else {
