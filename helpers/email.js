@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 const config = {
-	service: "gmail",
+	service: 'gmail',
 	auth: {
 		user: process.env.EMAIL_SERVICE_USER,
 		pass: process.env.EMAIL_SERVICE_PASS,
@@ -18,14 +18,13 @@ export const registerEmail = (data) => {
 		to: email,
 		subject: 'Uptask - Confirma tu cuenta',
 		html: `
-        <p>Hola: ${name}. Confirma tu cuenta para empezar a gestionar tus proyectos.</p>
+        <p>Hola: ${name}. Aquí está tu código de verficación.</p>
 
         <p>
-        Ya casi terminas, solo falta que sigas el siguiente link para confirmar tu cuenta:
-        <a href='${process.env.FRONTEND_URL}/confirm/${token}'>Cofirma tu cuenta</a>
+        Utiliza el siguiente código para confirmar tu cuenta: ${token}
         </p>
 
-		<p>Si tú no creaste esta cuenta, puedes ignorar este mensaje.</p>
+		<p>Si tú no solicitaste este código, puedes ignorar este mensaje.</p>
         `,
 	});
 };

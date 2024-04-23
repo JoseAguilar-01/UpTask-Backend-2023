@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
 
 		res.json({
 			message:
-				'Usuario creado exitosamente. Revisa tu email para confirmar tu cuenta',
+				'Usuario creado exitosamente. Hemos enviado un código de verificación a tu email.',
 		});
 	} catch (error) {
 		console.log('🚀 ~ file: userControllers.js ~ createUser ~ error:', error);
@@ -114,14 +114,14 @@ const forgotPassword = async (req, res) => {
 		return res.status(404).json({ message: error.message });
 	}
 
-	console.log(currentUser)
+	console.log(currentUser);
 
 	try {
 		currentUser.token = generateId();
 		await currentUser.save();
 
 		const { name, token } = currentUser;
-		
+
 		forgotPasswordEmail({ email, name, token });
 
 		return res.json({
