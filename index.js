@@ -22,7 +22,6 @@ const corsOptions = {
 		if (whitelist.includes(origin)) {
 			callback(null, true);
 		} else {
-			console.log('ORIGIN: ', origin)
 			callback(new Error('Not allowed by CORS'));
 		}
 	},
@@ -44,4 +43,4 @@ const server = app.listen(PORT, () =>
 );
 
 // Socket.io
-connectSocket(server);
+connectSocket(server, whitelist);
