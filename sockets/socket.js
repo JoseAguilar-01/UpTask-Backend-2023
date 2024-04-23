@@ -6,7 +6,7 @@ export const connectSocket = (server, whitelist) => {
 	const io = new Server(server, {
 		pingTimeout: 60000,
 		cors: {
-			origin: whitelist,
+			origin: '*',
 			methods: ['GET', 'POST']
 		},
 	});
