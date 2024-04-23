@@ -114,8 +114,6 @@ const forgotPassword = async (req, res) => {
 		return res.status(404).json({ message: error.message });
 	}
 
-	console.log(currentUser);
-
 	try {
 		currentUser.token = generateId();
 		await currentUser.save();
@@ -125,8 +123,7 @@ const forgotPassword = async (req, res) => {
 		forgotPasswordEmail({ email, name, token });
 
 		return res.json({
-			message:
-				'Te hemos enviado un email con las instrucciones para restablecer tu password',
+			message: 'Te hemos enviado un email con el código de verificación.',
 		});
 	} catch (error) {
 		console.log(
