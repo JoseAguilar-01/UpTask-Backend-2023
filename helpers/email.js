@@ -18,13 +18,16 @@ export const registerEmail = (data) => {
 		to: email,
 		subject: 'Uptask - Confirma tu cuenta',
 		html: `
-        <p>Hola: ${name}. Aquí está tu código de verficación.</p>
+        <div style="font-size: 24px;">
+			<p>Hola: ${name}. Aquí está tu código de verficación.</p>
 
-        <p>
-        Utiliza el siguiente código para confirmar tu cuenta: ${token}
-        </p>
+			<p>
+			Utiliza el siguiente código para confirmar tu cuenta: <span style="color: rgb(2, 132, 199);">
+			</span> ${token}
+			</p>
 
-		<p>Si tú no solicitaste este código, puedes ignorar este mensaje.</p>
+			<p>Si tú no solicitaste este código, puedes ignorar este mensaje.</p>
+		</div>
         `,
 	});
 };
