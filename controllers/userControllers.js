@@ -59,10 +59,14 @@ const authenticateUser = async (req, res) => {
 	}
 
 	if (!currentUser.confirmed) {
-		const error = new Error('El usuario no ha sido confirmado');
+		currentUser.token = generateId();
+
+		await currentUser.save();
 
 		const { name, token } = currentUser;
 		registerEmail({ email, name, token });
+
+		const error = new Error('El usuario no ha sido confirmado');
 
 		return res.status(403).json({ message: error.message });
 	}
