@@ -47,19 +47,23 @@ const authenticateUser = async (req, res) => {
 	const currentUser = await User.findOne({ email });
 
 	if (!currentUser) {
-		const error = new Error('El usuario o email no existe');
+		const error = new Error('El email o la contraseña son incorrectos');
 		return res.status(404).json({ message: error.message });
 	}
 
 	const matchingPassword = await currentUser.checkPassword(password);
 
 	if (!matchingPassword) {
-		const error = new Error('El password es incorrecto');
+		const error = new Error('El email o la contraseña son incorrectos');
 		return res.status(401).json({ message: error.message });
 	}
 
 	if (!currentUser.confirmed) {
 		const error = new Error('El usuario no ha sido confirmado');
+
+		const { name, token } = currentUser;
+		registerEmail({ email, name, token });
+
 		return res.status(403).json({ message: error.message });
 	}
 
